@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv4lpida023v5"]
+
+[ext_resource type="Script" path="res://scripts/bloco_caindo.gd" id="1_2r82r"]
+[ext_resource type="Texture2D" uid="uid://chdedqatyxeyu" path="res://assets/sprites/world_tileset.png" id="2_41sod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3mgq"]
+size = Vector2(15, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nirbm"]
+size = Vector2(15, 3)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_2r82r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_41sod")
+region_enabled = true
+region_rect = Rect2(127.889, 0, 16.6211, 16.6831)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.75)
+shape = SubResource("RectangleShape2D_t3mgq")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_nirbm")
+debug_color = Color(0.959811, 0, 0.51955, 0.42)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]
