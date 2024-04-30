@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://brg1jclxuj2dc"]
+
+[ext_resource type="Texture2D" uid="uid://chdedqatyxeyu" path="res://assets/sprites/world_tileset.png" id="1_2qt4o"]
+[ext_resource type="Script" path="res://scripts/blocoespecial.gd" id="1_e5pnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4osag"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yr5e"]
+size = Vector2(18, 3)
+
+[sub_resource type="Animation" id="Animation_8g0yk"]
+resource_name = "tirarMoeda"
+length = 0.324
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bu6kg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2q8b2"]
+_data = {
+"RESET": SubResource("Animation_bu6kg"),
+"tirarMoeda": SubResource("Animation_8g0yk")
+}
+
+[node name="blocoEspecial" type="StaticBody2D"]
+script = ExtResource("1_e5pnd")
+
+[node name="MoedaSpawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2qt4o")
+region_enabled = true
+region_rect = Rect2(63.1801, 31.8908, 17.3494, 16.3781)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4osag")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_0yr5e")
+debug_color = Color(0.987147, 0, 0.316141, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2q8b2")
+}
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

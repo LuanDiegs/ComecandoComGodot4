@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://brg1jclxuj2dc"]
+
+[ext_resource type="Texture2D" uid="uid://chdedqatyxeyu" path="res://assets/sprites/world_tileset.png" id="1_2qt4o"]
+[ext_resource type="Script" path="res://scripts/blocoespecial.gd" id="1_e5pnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4osag"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yr5e"]
+size = Vector2(18, 3)
+
+[node name="BlocoEspecial" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_e5pnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2qt4o")
+region_enabled = true
+region_rect = Rect2(63.1801, 31.8908, 17.3494, 16.3781)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4osag")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_0yr5e")
+debug_color = Color(0.987147, 0, 0.316141, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
