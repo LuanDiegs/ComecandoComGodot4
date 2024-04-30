@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c07pb4ovxwo87"]
+[gd_scene load_steps=22 format=3 uid="uid://c07pb4ovxwo87"]
 
 [ext_resource type="PackedScene" uid="uid://c67ajg1thutag" path="res://scenes/player.tscn" id="1_knqbq"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_op74j"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cxdofg5bjl67l" path="res://scenes/zonaMortal.tscn" id="7_xle04"]
 [ext_resource type="PackedScene" uid="uid://bp57n4f8hysmn" path="res://scenes/inimigo.tscn" id="8_m8s7v"]
 [ext_resource type="FontFile" uid="uid://bfpwewrfym0ea" path="res://assets/fonts/PixelOperator8.ttf" id="9_ayvcy"]
-[ext_resource type="PackedScene" uid="uid://brg1jclxuj2dc" path="res://scenes/blocoespecial.tscn" id="12_ldo5r"]
 [ext_resource type="AudioStream" uid="uid://l4hihicx7uxy" path="res://assets/music/time_for_adventure.mp3" id="12_uwwoh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptqud"]
@@ -670,9 +669,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BlocoEspecial" type="Node" parent="."]
-
-[node name="blocoEspecial" parent="BlocoEspecial" instance=ExtResource("12_ldo5r")]
-position = Vector2(63, 0)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_uwwoh")
