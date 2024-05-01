@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="BrackeysTutorial"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/UI/menuInicial.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Musica="*res://scenes/Audio/musica.tscn"
+EfeitosSonoros="*res://scenes/Audio/efeitosSonoros.tscn"
 
 [input]
 

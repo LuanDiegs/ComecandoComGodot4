@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var interfaceJogo = %InterfaceJogo
+@onready var interfaceJogo = %UIJogador
 @onready var audioStream = $AudioStreamPlayer2D
 @onready var animation_player = $AnimationPlayer
 

@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://dr3jovdgr4if1"]
+
+[ext_resource type="FontFile" uid="uid://prbv04m85c00" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_bersj"]
+[ext_resource type="Script" path="res://scripts/menuInicial.gd" id="1_nj46j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ripf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oo4ie"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b0nxm"]
+
+[sub_resource type="Theme" id="Theme_7tqxy"]
+default_font = ExtResource("1_bersj")
+Button/colors/font_color = Color(0.874245, 0.880588, 0.836822, 1)
+Button/colors/font_hover_color = Color(0.788235, 0.431373, 0.47451, 1)
+Button/constants/h_separation = 123
+Button/styles/hover = SubResource("StyleBoxEmpty_5ripf")
+Button/styles/normal = SubResource("StyleBoxEmpty_oo4ie")
+Button/styles/pressed = SubResource("StyleBoxEmpty_b0nxm")
+
+[sub_resource type="Theme" id="Theme_ejr5n"]
+Button/font_sizes/font_size = 32
+
+[sub_resource type="Animation" id="Animation_07ca7"]
+resource_name = "teste"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 0), Vector2(-2, -10), Vector2(-2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wvd8u"]
+_data = {
+"teste": SubResource("Animation_07ca7")
+}
+
+[node name="MenuInicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7tqxy")
+script = ExtResource("1_nj46j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.252501, 0.217274, 0.428278, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -8.01634
+offset_right = 219.0
+offset_bottom = -8.01636
+grow_vertical = 2
+theme_override_constants/margin_left = 29
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_ejr5n")
+theme_override_constants/separation = 50
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Jogar
+"
+
+[node name="Opcoes" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Opçoes"
+
+[node name="Sair" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sair
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wvd8u")
+}
+autoplay = "teste"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]

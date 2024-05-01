@@ -168,8 +168,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dfass"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awbtb"]
+radius = 6.0
+height = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -179,10 +180,11 @@ script = ExtResource("1_675fw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_onrd2")
-animation = &"pular"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.479922
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_dfass")
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_awbtb")

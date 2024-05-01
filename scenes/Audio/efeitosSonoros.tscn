@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://3vf4qss81dm4"]
+
+[ext_resource type="Script" path="res://scripts/efeitosSonoros.gd" id="1_gkdcf"]
+
+[node name="EfeitosSonoros" type="AudioStreamPlayer"]
+bus = &"EfeitosSonoros"
+script = ExtResource("1_gkdcf")

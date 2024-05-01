@@ -1,17 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://c07pb4ovxwo87"]
+[gd_scene load_steps=21 format=3 uid="uid://c07pb4ovxwo87"]
 
 [ext_resource type="PackedScene" uid="uid://c67ajg1thutag" path="res://scenes/player.tscn" id="1_knqbq"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_op74j"]
 [ext_resource type="Script" path="res://scripts/interfaceJogo.gd" id="2_gdpyb"]
 [ext_resource type="Texture2D" uid="uid://chdedqatyxeyu" path="res://assets/sprites/world_tileset.png" id="2_rj2hv"]
-[ext_resource type="FontFile" uid="uid://prbv04m85c00" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_3h27q"]
 [ext_resource type="PackedScene" uid="uid://byaqiirbphk2c" path="res://scenes/plataform.tscn" id="3_fe1m8"]
+[ext_resource type="PackedScene" uid="uid://bntrfac5tyqfm" path="res://scenes/UI/playerUI.tscn" id="3_iwe20"]
 [ext_resource type="PackedScene" uid="uid://bv4lpida023v5" path="res://scenes/blocoFragil.tscn" id="4_vnqim"]
 [ext_resource type="PackedScene" uid="uid://c734nroyrt8sr" path="res://scenes/moeda.tscn" id="6_dqi1n"]
 [ext_resource type="PackedScene" uid="uid://cxdofg5bjl67l" path="res://scenes/zonaMortal.tscn" id="7_xle04"]
 [ext_resource type="PackedScene" uid="uid://bp57n4f8hysmn" path="res://scenes/inimigo.tscn" id="8_m8s7v"]
 [ext_resource type="FontFile" uid="uid://bfpwewrfym0ea" path="res://assets/fonts/PixelOperator8.ttf" id="9_ayvcy"]
-[ext_resource type="AudioStream" uid="uid://l4hihicx7uxy" path="res://assets/music/time_for_adventure.mp3" id="12_uwwoh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptqud"]
 texture = ExtResource("2_rj2hv")
@@ -498,22 +497,13 @@ _data = {
 script = ExtResource("1_op74j")
 
 [node name="InterfaceJogo" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_gdpyb")
 
-[node name="Pontuacao" type="Label" parent="InterfaceJogo"]
-offset_left = -22.0
-offset_top = -139.0
-offset_right = 139.0
-offset_bottom = -116.0
-theme_override_colors/font_color = Color(0.0117647, 0.14902, 0.34902, 1)
-theme_override_fonts/font = ExtResource("3_3h27q")
-theme_override_font_sizes/font_size = 8
-text = "Pontos: 
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="InterfaceJogo"]
+
+[node name="UIJogador" parent="InterfaceJogo/CanvasLayer" instance=ExtResource("3_iwe20")]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("2_gdpyb")
 
 [node name="TileMap" type="TileMap" parent="."]
 unique_name_in_owner = true
@@ -583,6 +573,9 @@ position = Vector2(584, 51)
 
 [node name="Moeda9" parent="Moedas" instance=ExtResource("6_dqi1n")]
 position = Vector2(638, 51)
+
+[node name="Moeda10" parent="Moedas" instance=ExtResource("6_dqi1n")]
+position = Vector2(56, 0)
 
 [node name="ZonaMortal" type="Node" parent="."]
 
@@ -669,8 +662,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BlocoEspecial" type="Node" parent="."]
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_uwwoh")
-autoplay = true
-bus = &"Musica"

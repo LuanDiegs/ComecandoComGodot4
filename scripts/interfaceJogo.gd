@@ -1,9 +1,12 @@
-extends Node
+extends Control
 
+@onready var pontuacao_moedas_label = %PontuacaoMoedasLabel
 var pontuacao = 0
-@onready var pontuacaoLabel = $Pontuacao
-
+	
 func adicionarPontuacao():
 	pontuacao += 1
-	pontuacaoLabel.text = "Você pegou " + str(pontuacao) + " moedas!"
-	print(pontuacao)
+	pontuacao_moedas_label.text = str(pontuacao)
+	
+func habilitarUI():
+	visible = true
+	
